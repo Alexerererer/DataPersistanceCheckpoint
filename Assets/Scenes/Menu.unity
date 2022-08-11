@@ -693,8 +693,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1592925859}
-        m_TargetAssemblyTypeName: DataPersistancy, Assembly-CSharp
+      - m_Target: {fileID: 523035665}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: GetPlayerName
         m_Mode: 0
         m_Arguments:

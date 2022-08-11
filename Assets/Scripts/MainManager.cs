@@ -20,11 +20,13 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    private bool IsScoreBeaten = false;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        PersistentName.text = "Player Name: " + DataPersistancy.Instance.PlayerName;
+        PersistentName.text = "Record Holder: " + DataPersistancy.Instance.LastPlayerName + " Best Score: " + DataPersistancy.Instance.BestScore;
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -64,6 +66,11 @@ public class MainManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+        if (m_Points > DataPersistancy.Instance.BestScore)
+        {
+            PersistentName.text = "Record Holder: " + DataPersistancy.Instance.CurrentPlayerName + " Best Score: " + m_Points;
+            IsScoreBeaten = true;
+        }
     }
 
     void AddPoint(int point)
@@ -80,6 +87,10 @@ public class MainManager : MonoBehaviour
 
     public void Exit()
     {
+        if(IsScoreBeaten)
+        {
+            DataPersistancy.Instance.SaveScore(m_Points, DataPersistancy.Instance.CurrentPlayerName);
+        }
         SceneManager.LoadScene(0);
     }
 }
